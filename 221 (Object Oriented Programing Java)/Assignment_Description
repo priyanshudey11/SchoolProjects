@@ -1,0 +1,344 @@
+Programming Assignment 1 Loan Account Class
+Loan Account Class: 
+
+Create class LoanAccount. Use a static variable annualInterestRate to store the annual interest rate for all account holders. Each object of the class contains a private instance variable principal indicating the amount the person is borrowing. Provide method: public double calculateMonthlyPayment(int numberOfPayments) to calculate the monthly payment by using the following formula:
+
+double monthlyPayment = principal * ( monthlyInterest / (1 - Math.pow(1 + monthlyInterest, -numberOfPayments)));
+
+where
+
+monthly interest = annualInterestRate/12.
+
+Provide a static method setAnnualInterestRate that sets the annualInterestRate to a new value.  Set the initial loan amount (Principal) for a new loan through the constructor.
+
+Write a program to test class LoanAccount. Instantiate two LoanAccount objects, loan1 and loan2, with principal loan amounts of 
+5000.00
+a
+n
+d
+31000.00, respectively. Set annualInterestRate to 1%, then calculate the monthly payment for each loan for 36 months, 60 months, and 72 months and print the monthly payment amounts for both loans. Next, set the annualInterestRate to 5%, and output the same information again.  Make sure your dollar amounts are displayed to two decimal places.
+
+Assignment 2 - Loan Account Hierarchy
+
+In this assignment, we are going to create a Loan Account Hierarchy consisting of the following classes: LoanAccount, CarLoan, PrimaryMortgage , UnsecuredLoan, and Address. Each class should be in it's own .java file.
+
+The LoanAccount class consists of the following properties:
+
+principal- the original amount of the loan.
+annualInterestRate - the annual interest rate for the loan. It is not static as each loan can have it's own interest rate.
+months - the number of months in the term of the loan, i.e. the length of the loan.
+and the following methods:
+
+a constructor that takes the three properties as parameters.
+calculateMonthlyPayment() - takes no parameters and calculates the monthly payment using the same formula as Assignment 1.
+getters for the three property variables.
+toString() - displays the information about the principle, annualInterestRate, and months as shown in the example output below.
+ 
+
+The CarLoan class which is a subclass of the LoanAccount class and consists of the following property:
+
+vehicleVIN - the VIN number of the car, as a string.
+and the following methods:
+
+constructor that accepts the three parameters of the LoanAccount class and the vehicleVIN.
+toString() - displays the information about the VIN number as shown in the example output below.
+ 
+
+The PrimaryMortgage class which is a subclass of LoanAccount and consists of the following properties:
+
+PMIMonthlyAmount - the amount of the Primary Mortgage Insurance which is required for all mortgages where the down payment is not at least 20% of the home value.
+Address - the address of the real estate and is an object of the Address class.
+and the following methods:
+
+constructor that accepts the three parameters of the LoanAccount class, the PMIMonthlyAmount, and the Address object containing the address.
+toString() - displays the information about the PMIMonthlyAmount and Address as shown in the example output below.
+ 
+
+The UnsecuredLoan class which is a subclass of LoanAccount and has no additional properties and has the following methods:
+
+constructor that accepts the three parameters of the LoanAccount class.
+toString() - displays the information that it is an Unsecured Loan as shown in the example output below.
+ 
+
+The Address class which consists of the following properties:
+
+street - the house number and street part of the address.
+city - the city where it is located.
+state - the state.
+zipcode - and the zipcode.
+and the following methods:
+
+constructor which accepts the values for the four properties as parameters.
+getters for each property.
+toString() - display the address information as shown in the example below.
+ 
+
+Your code in the subclasses should call methods in the super classes whenever possible to reduce the amount of code in the subclasses and utilize the code already developed in the super classes. 
+
+Use the following code in your main function to test your classes, just copy and paste it into your main method:
+
+        // Create three different loan objects, one of each type.
+        CarLoan carLoan = new CarLoan(25000.00, 4.25, 72, "IRQ3458977");
+        
+        Address propertyAddress = new Address("321 Main Street", "State College", "PA", "16801");
+        PrimaryMortgage propertyLoan = new PrimaryMortgage(250000.00, 3.1, 360, 35.12, propertyAddress);
+        
+        UnsecuredLoan unsecuredLoan = new UnsecuredLoan(5000.00, 10.75, 48);
+        
+        //Print out the load information for each loan using the toString() method.
+        System.out.format("%n%s%s%s%n", carLoan, propertyLoan, unsecuredLoan);
+The output from your program should look like the following:
+
+run:
+
+Car Loan with:
+Principal: 25000.00 Annual Interest Rate: 4.25% Term of Loan in Months: 72 Monthly Payment:393.98
+Vehicle VIN: IRQ3458977
+
+Primary Mortgage Loan with:
+Principal: 250000.00 Annual Interest Rate: 3.10% Term of Loan in Months: 360 Monthly Payment:1067.54
+PMI Monthly Amount: $35.12
+Property Address: 
+    321 Main Street
+    State College, PA 16801
+
+Unsecured Loan with:
+Principal: 5000.00 Annual Interest Rate: 10.75% Term of Loan in Months: 48 Monthly Payment:128.62
+
+Assignment 3 - Customer Loan Accounts
+
+For this assignment, you are going to enhance the Loan Accounts Hierarchy that you created in Programming Assignment 2 by adding a Customer class with the following properties and methods:
+
+Properties:
+
+firstName - the customer's first name (String).
+lastName - the customer's last name (String).
+SSN - the customer's (String).
+loanAccounts - an array list of loan accounts (ArrayList<LoanAccount>).
+Methods:
+
+a constructor that accepts firstName, lastName, and SSN as parameters.
+getters for firstName, lastName, and SSN.
+addLoanAccount(LoanAccount account) - adds a loan to the array list of loans for this customer.
+printMonthlyReport() - prints all the information for all the accounts of this Customer. Utilizes the toString() method of the corresponding loan class. The output of the printMonthlyReport() method should match the sample output displayed below.
+Note: make sure your output matches the output below including number of decimal places displayed and $ and % characters.
+
+Use the following code in your main function to test your classes, just copy and paste it into your main method:
+
+        // Create different loan objects, at least one of each type.
+        CarLoan carLoan1 = new CarLoan(25000.00, 4.9, 72, "IRQ3458977");
+        CarLoan carLoan2 = new CarLoan(12000.00, 5, 60, "NXK6767876");
+        
+        Address propertyAddress1 = new Address("321 Main Street", "State College", "PA", "16801");
+        PrimaryMortgage propertyLoan1 = new PrimaryMortgage(250000.00, 3.75, 360, 35.12, propertyAddress1);
+        Address propertyAddress2 = new Address("783 Maple Lane", "State College", "PA", "16801");
+        PrimaryMortgage propertyLoan2 = new PrimaryMortgage(375000.00, 2.5, 360, 53.12, propertyAddress2);
+        
+        UnsecuredLoan unsecuredLoan = new UnsecuredLoan(5000.00, 10.75, 48);
+        
+        // create customers
+        Customer customerA = new Customer("Tony", "Stark", "111-22-3333");
+        Customer customerB = new Customer("Gal", "Gadot", "444-55-6666");
+        
+        // add loans for the customers.
+        customerA.addLoanAccount(carLoan1);
+        customerA.addLoanAccount(propertyLoan1);
+        customerA.addLoanAccount(unsecuredLoan);
+        
+        customerB.addLoanAccount(carLoan2);
+        customerB.addLoanAccount(propertyLoan2);
+        
+        // add the customers to an arraylist of customers.
+        ArrayList<Customer> customers = new ArrayList<>();
+        customers.add(customerA);
+        customers.add(customerB);
+        
+        //Print out the loan information for each customer polymorhically.
+        System.out.println("Monthly Report of Customers by Loan Account");
+        for (Customer customer:customers)
+        {
+            System.out.println(customer.printMonthlyReport());
+        }
+  
+
+
+The output from your program should look like the following:
+
+run:
+
+
+Monthly Report of Customers by Loan Account
+Account Report for Customer: Tony Stark with SSN 111-22-3333
+
+Car Loan with:
+Principal: 25000.00 Annual Interest Rate: 4.90% Term of Loan in Months: 72 Monthly Payment:401.46
+Vehicle VIN: IRQ3458977
+
+
+Primary Mortgage Loan with:
+Principal: 250000.00 Annual Interest Rate: 3.75% Term of Loan in Months: 360 Monthly Payment:1157.79
+PMI Monthly Amount: $35.12
+Property Address: 
+    321 Main Street
+    State College, PA 16801
+
+
+Unsecured Loan with:
+Principal: 5000.00 Annual Interest Rate: 10.75% Term of Loan in Months: 48 Monthly Payment:128.62
+
+ 
+
+Account Report for Customer: Gal Gadot with SSN 444-55-6666
+
+Car Loan with:
+Principal: 12000.00 Annual Interest Rate: 5.00% Term of Loan in Months: 60 Monthly Payment:226.45
+Vehicle VIN: NXK6767876
+
+
+Primary Mortgage Loan with:
+Principal: 375000.00 Annual Interest Rate: 2.50% Term of Loan in Months: 360 Monthly Payment:1481.70
+PMI Monthly Amount: $53.12
+Property Address: 
+    783 Maple Lane
+    State College, PA 16801
+
+Pizza Servings Calculator GUI Assignment 4
+
+Write a GUI to calculate the number of servings that a circular pizza of a certain diameter will make. The GUI will have the following appearance:
+
+
+It must include the following features:
+
+ The frame title must say 'Pizza Servings Calculator'.
+ A grid layout will be used for the GUI.
+ The JLabel title of the GUI will say 'Pizza Servings Calculator' and be in red and will be placed in  grid slot 1.
+ A JLabel of 'Enter the size of the pizza in inches: ' will be placed in grid slot 2 followed by a JTextField where the pizza size will be entered and have a width of 4.
+ A JButton will be placed in grid slot 3 and will contain 'Calculate Servings'.
+A JLabel, initially blank, will be placed in grid slot 4.
+To execute the GUI, enter a pizza size in the JTextField and click the Calculate Servings button. The Calculate Servings button handler will then execute and calculate the number of servings and display it as shown in the following image:
+
+PizzaServingsCalculatorFinal.png
+
+The number of servings will be calculate using the following formula:
+
+         servings = (size / 8)**2
+
+and displayed to two decimal places. You can use the Double.parseDouble(textField.getText() ) to get the string value from the JTextField and parse it to a double. This formula assumes that an 8 inch pie makes 1 serving. Based on the area of an 8" pie as one serving, the number of servings will vary with the ratio of the radius of the new pie to the 8" pie squared. Therefore, a 16" pie would give you a ratio of 16/8 or 2 squared which is 4 servings.
+
+Line 2 of the GUI contains two GUI components but each cell of a grid can only contain one component. This is where JPanels come in for GUI design. A JPanel is a container that simply holds other components, so we can use a JPanel as the component for line 2. We can create a JPanel by using a statement like:
+private JPanel line2 = new JPanel();
+Then we can add components to it with statements like:
+    line2.add(variable that represents your JLabel for Enter the size of the pizza...);
+Then we can add line2 to the grid layout in slot 2.
+
+To set the layout of the frame to a 4 line grid layout, you would use a setLayout statement such as:
+setLayout(new GridLayout(4,1));
+
+Once the servings have been calculated, they are displayed in the JLabel in grid slot 4 as shown.
+
+Set the size of your GUI to (350, 300). This should give it the appearance as shown above. Your class that represents the GUI should extend JFrame.
+
+Do not use the NetBeans GUI generator for this project.
+
+
+
+Temperature Converter GUI Assigenment 5
+
+Write a GUI program, using the NetBeans GUI generator, that will convert temperatures from fahrenheit to celsius and from celsius to fahrenheit. The user should be able to enter a temperature to convert, click on a radio button to specify which conversion to do, and then click on a button to see the converted temperature displayed.
+
+Use the following formulas for the temperature conversions:
+
+F = 9 / 5 * C + 32
+
+and
+
+C = 5 / 9 * (F - 32)
+
+where F is the Fahrenheit temperature and C is the Celsius temperature.
+
+The temperatures should be displayed to 1 decimal place, e.g. 93.7 degrees Fahrenheit.
+
+Finial Project 1:
+Course Scheduler Final Project Part 1
+You have been asked to develop a Course Scheduling application for a College. The
+application will enable two types of Users to perform their necessary functions to
+schedule courses by semester. The Admin User will perform multiple functions to set up
+the database so that Students my schedule courses. The functions each User will be
+able to perform will be described below.
+This application should have a very nice GUI interface and will be a database driven
+application. The database used will be Derby. This application must use good Object-
+Oriented Design and Programming. The database must use good Object-Oriented
+Design and Programming. There is a very close correlation between Object-Oriented
+Design and Database Design. Your application design should include at least four
+classes besides the main GUI class. Your database accesses should be in the classes
+that correlate with the database tables.
+This assignment is the first half of the final project and will be submitted as
+Final Project Part 1.
+This phase of the project will implement the following Admin functions:
+Add Semester
+A semester is added to the database. The semester is identified by one name.
+Add Course
+A new course is added to the database. The course is identified by the semester it is
+to be added to, the code for the course, the description of the course and the maximum
+number of students the course will contain that semester.
+Add Student
+A student is added to the database. The student is identified by a studentID, the
+student’s first name, and the student’s last name.
+This phase of the project will implement the following Student functions:
+Schedule Course
+The student will be scheduled in the class for the specified semester, if there are
+seats available. If there are no seats available, the student will be put a wait list for that
+Course. The waiting list must be maintained in the order the students tried to schedule
+the course.
+Display Schedule
+The Display Schedule function will display the current schedule for a specified
+student for the current semester.
+Display Courses
+The Display Courses function will display a complete list of courses for the current
+semester.
+Testing scenario:
+A testing scenario will be provided to assist you in testing this application. It will be
+called Final Project Part 1 Test Script in Canvas.
+Database considerations:
+Your database will be created but all of the tables should be empty when your
+project is submitted.
+Initial NetBeans Project:
+An initial project is provided for you to be used as the basis of your final project. It is
+provided as a .zip file in Week 11 in Canvas under the name
+CourseSchedulerNameID.zip. It MUST be used for your Final Project. You will change
+the project name after you download it. There is a video in Week 11 about how to do
+this.
+GUI Guidelines:
+The user should be required to enter only unknown data. Drop down lists of known
+data such as Student names, Course Codes, or Semesters should be displayed for the
+user to select. Combo Boxes should be used for the drop-down lists on the form. When
+information is requested to be displayed, e.g., for a Display command, all of the
+requested information must be displayed. When a command is performed, the results of
+that command should be displayed to the user on the same display without the user
+needing to use a Display function to see what was done.
+Submission Guidelines:
+Don't forget to submit your zipped PROJECT folder and your zipped DATABASE
+folder. Zip the ENTIRE database folder and the ENTIRE project folder and submit the
+two zipped files in the assignment under one submission.
+Note:
+Your project must be renamed with the name ‘CourseSchedulerNameID’, where
+Name is your name and ID is your psu account id, e.g. xxx1234. The database must
+be created with the name ‘CourseSchedulerDBNameID’, and a username and
+password of java and java. All tables should be empty.
+Grading Criteria:
+In this project I will be looking for good OO design practices and this includes:
+• Use of getter and setter methods for class variables
+• Good naming of your classes, methods and variables
+• Correct use of static and non-static methods
+• The way you split this project into classes.
+• All of your updates to the database must be done using SQL statements, do
+not use ResultSetTableModels to update the database.
+• If a SQL statement to update the database needs to contain a variable, then
+you must use PreparedStatements, do not use concatenation of strings to
+create the SQL statement.
+The Grading Rubric for Final Project Part 1 is posted in Canvas.
+Note: Make sure you look at all the videos about this assignment and the Course Scheduler
+Design Layout in Canvas before starting this assignment.
+
+
+
