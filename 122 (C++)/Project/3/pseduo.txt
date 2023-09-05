@@ -1,0 +1,127 @@
+createNode(val):
+    // Allocate memory for a new linked list node and initialize its fields
+    newNode = new listMemb
+    newNode.value = val
+    newNode.leftPtr = NULL
+    newNode.rightPtr = NULL
+    // Return a pointer to the new node
+    return newNode
+
+insertBefore(node, newNode):
+    // Link the new node to the left and right nodes
+    newNode.leftPtr = node.leftPtr
+    newNode.rightPtr = node
+    // If there is a left node, link it to the new node
+    if (node.leftPtr != NULL)
+    node.leftPtr.rightPtr = newNode
+    // Link the given node to the new node
+    node.leftPtr = newNode
+
+insertAfter(node, newNode):
+    // Link the new node to the left and right nodes
+    newNode.leftPtr = node
+    newNode.rightPtr = node.rightPtr
+    // If there is a right node, link it to the new node
+    if (node.rightPtr != NULL)
+    node.rightPtr.leftPtr = newNode
+    // Link the given node to the new node
+    node.rightPtr = newNode
+//updated this
+printHeader(val, outputFile):
+    // Create a string with the "Read x = " message and the value
+    readx = "Read x = " + val.toString()
+    // Print the string to the output file
+    outputFile << readx
+
+//Added a lot to the printheader instead just worked and also added this function instead of putting it in the main
+binarySort(head, tail, val, outputFile):
+    // Create a new pointer to the head of the list
+    current = head
+    // Loop through the linked list until we find the correct position to insert the new node
+    while (current != NULL && val > current.value)
+    current = current.rightPtr
+
+    // If the end of the list is reached, insert the new node at the end
+    if (current == NULL) 
+        // Insert at the end of the list
+        newNode = createNode(val)
+        if (tail != NULL)
+            // If tail exists, insert the new node after the tail
+            insertAfter(tail, newNode)
+            tail = newNode
+        else
+            // If tail does not exist, set the head and tail to the new node
+            head = newNode
+            tail = newNode
+    // If the current node is the head of the list, insert the new node at the beginning
+    else if (current.leftPtr == NULL) 
+        // Insert at the beginning of the list
+        newNode = createNode(val)
+        insertBefore(head, newNode)
+        head = newNode
+    // Otherwise, insert the new node in the middle of the list
+    else
+        // Insert in the middle of the list
+        newNode = createNode(val)
+        insertBefore(current, newNode)
+    printList(head, outputFile, verbose):
+    // Initialize a pointer to traverse the linked list, starting from the head
+    current = head
+    // Initialize a counter to keep track of the element number
+    count = 1
+    // Initialize a string to store the element number
+    element = "Element #:"
+    // Initialize a string to store the values of the elements
+    values ="Values:"
+    // Initialize a string to store the current element number
+    c = " "
+    // Initialize a string to store the value of the head element
+    h = ""
+    // Initialize a string to store the value of the current element
+    t = " "
+    // Initialize a string to store the value of the middle element
+    m = " "
+    // Initialize a string to store a note about the middle element
+    note = " "
+    // Traverse the linked list until the end is reached
+    while (current != NULL)
+    outputFile << "Sorted list:" << endl;
+    listMemb* current = head;
+    while (current != nullptr) 
+        {
+        outputFile << current->value << " ";
+        current = current->rightPtr;
+        }
+    outputFile << endl;
+//updated this
+int main():
+    // Declare variables for input file name and output file name
+    string inputFileName, outputFileName;
+    // Get the input file name from the user
+    cout << "Enter the name of the input file: ";
+    cin >> inputFileName;
+    // Get the output file name from the user
+    cout << "Enter the name of the output file: ";
+    cin >> outputFileName;
+    // Open the input file
+    ifstream inputFile(inputFileName);
+    // Open the output file
+    ofstream outputFile(outputFileName);
+    // Declare variables for the input value and the head and tail of the linked list
+    int val;
+    listMemb* head = nullptr;
+    listMemb* tail = nullptr;
+    // Read the input values from the input file and perform binary sort on the linked list
+    while (inputFile >> val)
+    {
+    binarySort(head, tail, val, outputFile);
+    }
+    // Print the sorted linked list to the output file in verbose format
+    printList(head, outputFile, true);
+    // Print the sorted linked list to the output file in non-verbose format
+    printList(head, outputFile, false);
+    // Close the input and output files
+    inputFile.close();
+    outputFile.close();
+    // Exit the program
+    return 0;

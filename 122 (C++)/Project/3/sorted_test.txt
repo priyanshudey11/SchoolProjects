@@ -1,0 +1,5 @@
+c = 0
+h => 0 (element 1)
+t => 100 (element 0)
+m => 5 (element 1)
+Note that c/2  = 0

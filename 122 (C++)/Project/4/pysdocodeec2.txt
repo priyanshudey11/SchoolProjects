@@ -1,0 +1,88 @@
+struct TreeNode
+{
+    value: string
+    left: TreeNode
+    right: TreeNode
+    height: int
+    balanceFactor: int
+}
+
+function createNode(val: string) -> TreeNode
+    node = new TreeNode
+    node.value = val
+    node.left = NULL
+    node.right = NULL
+    node.height = 1
+    node.balanceFactor = 0
+    return node
+
+function getHeight(node: TreeNode) -> int
+    if node == NULL
+        return 0
+    return node.height
+
+function getBalanceFactor(node: TreeNode) -> int
+    if node == NULL
+        return 0
+    return getHeight(node.left) - getHeight(node.right)
+
+function leftRotate(x: TreeNode) -> TreeNode
+    y = x.right
+    z = y.left
+    y.left = x
+    x.right = z
+    x.height = max(getHeight(x.left), getHeight(x.right)) + 1
+    y.height = max(getHeight(y.left), getHeight(y.right)) + 1
+    x.balanceFactor = getBalanceFactor(x)
+    y.balanceFactor = getBalanceFactor(y)
+    return y
+
+function rightRotate(y: TreeNode) -> TreeNode
+    x = y.left
+    z = x.right
+    x.right = y
+    y.left = z
+    y.height = max(getHeight(y.left), getHeight(y.right)) + 1
+    x.height = max(getHeight(x.left), getHeight(x.right)) + 1
+    y.balanceFactor = getBalanceFactor(y)
+    x.balanceFactor = getBalanceFactor(x)
+    return x
+function rebalance
+balanceFactor: int 
+if balanceFactor>1 & node.left>=0:
+    rightRotate()
+if balanceFactor<-1 & node.right<=0:
+    leftRotate()
+if balanceFactor>1 & node.left>=0:
+    rightRotate()
+if balanceFactor<-1 & node.right>0:
+    leftRotate()
+
+function insertNode(node: TreeNode, val: string) -> TreeNode
+    if node == NULL
+        return createNode(val)
+    if val < node.value
+        node.left = insertNode(node.left, val)
+    else
+        node.right = insertNode(node.right, val)
+    node.height = max(getHeight(node.left), getHeight(node.right)) + 1
+    node.balanceFactor = getBalanceFactor(node)
+    rebalance()
+function inorderTraversal(node):
+    if node is not NULL:
+        inorderTraversal(node.left)
+        print node.value
+        inorderTraversal(node.right)
+functionprintTree(node):
+    if node is not NULL:
+        printTree(node.left)
+        print node.value, node.left.value if node.left is not NULL else "null", node.right.value if node.right is not NULL else "null", node.height, node.balanceFactor
+        printTree(node.right)
+main():
+    root = NULL
+    filename = get_filename_from_user()
+    inputFile = open_file(filename)
+    if inputFile is not NULL:
+        while word = read_word_from_file(inputFile):
+            root = insertNode(root, word)
+        print_formatted_tree(root)

@@ -1,0 +1,88 @@
+/*
+void initTransTable(stateTrans transTable[]) {
+    transTable[0] = { ZERO, ONE, 0, RIGHT };
+    transTable[1] = { ZERO, BLANK, 1, LEFT };
+    transTable[2] = { ONE, ONE, 1, LEFT };
+    transTable[3] = { ONE, BLANK, 2, RIGHT };
+}
+*/
+void subtractUnary(char tape[]) {
+    char curState = STARTSTATE;
+    int curPos = STARTPOS;
+    int lenN = 0, lenM = 0, lenRes = 0;
+    bool isSubtracting = false;
+
+ // Find lengths of n and m
+    while (tape[curPos] == ONE) {
+        ++lenN;
+        --curPos;
+    }
+    --curPos;  // Skip over blank separator
+    while (tape[curPos] == ONE) {
+        ++lenM;
+        --curPos;
+    }
+
+        // Subtract m from n
+        while (curState != HALT_STATE) {
+            if (curPos < 0 || curPos >= MAXTAPE) {
+                cerr << "Error: tape out of bounds!" << endl;
+                exit(1);
+            }
+            stateTrans trans = transTable[curState - '0'];
+            char readChar = tape[curPos];
+            if (readChar == BLANK || readChar == STAR) {
+                count << "Error: unexpected end of tape!" << endl;
+                exit(1);
+            }
+            tape[curPos] = trans.writeChar;
+            if (trans.move == LEFT)
+                --curPos;
+            else if (trans.move == RIGHT)
+                ++curPos;
+            else {
+                cerr << "Error: invalid tape move!" << endl;
+                exit(1);
+            }
+            curState = trans.nextState;
+
+            // Check if we're subtracting
+            if (!isSubtracting) {
+                if (curPos < MAXTAPE - 1 && tape[curPos + 1] == BLANK)
+                    isSubtracting = true;
+            } else {
+                ++lenRes;
+            }
+        }
+
+        // Check that n - n = 0
+        if (lenM == lenN && lenRes == 0) {
+            tape[STARTPOS - lenN - 1] = ONE;
+        }
+
+        // Rewind tape to left-most non-blank character
+        while (tape[curPos] == BLANK) {
+            ++curPos;
+        }
+    }
+
+void printTape(string tape, short pos) {
+    int len = tape.length();
+    cout << "Tape starts at " << STARTPOS << " length = " << len << " highlights position " << pos << " tape = " << endl << "   ";
+// Iterate through each character on the tape
+for (int i = 0; i < len; i++) {
+    // If the current position is the same as the position of the head, print a highlight symbol '|'
+    if (i == pos) {
+        cout << "|";
+    }
+    // Print the current character on the tape
+    cout << " " << tape[i] << " ";
+}
+// If the position of the head is at the end of the tape, print a highlight symbol '|'
+if (pos == len) {
+    cout << "|";
+}
+// Print a new line to separate from the next output
+cout << endl;
+
+}

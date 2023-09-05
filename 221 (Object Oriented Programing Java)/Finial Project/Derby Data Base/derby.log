@@ -1,0 +1,20 @@
+Sat Aug 12 18:00:39 EDT 2023 : Apache Derby Network Server - 10.16.1.1 - (1901046) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Sat Aug 12 18:00:39 EDT 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-0189-ebc4-04c6-0000400677d1 
+on database directory C:\Users\omviz\OneDrive\Everything\College Code\Penn State\221(Java Object Oriented)\Derby Data Base\CourseSchedulerDBPriyanshu5228 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/omviz/OneDrive/Everything/College%20Code/Penn%20State/221(Java%20Object%20Oriented)/db-derby-10.16.1.1-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=20.0.1+9-29
+user.dir=C:\Users\omviz\OneDrive\Everything\College Code\Penn State\221(Java Object Oriented)\db-derby-10.16.1.1-bin
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\omviz\OneDrive\Everything\College Code\Penn State\221(Java Object Oriented)\Derby Data Base
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Aug 12 18:09:07 EDT 2023: Shutting down Derby engine
+----------------------------------------------------------------
+Sat Aug 12 18:09:07 EDT 2023:
+Shutting down instance a816c00e-0189-ebc4-04c6-0000400677d1 on database directory C:\Users\omviz\OneDrive\Everything\College Code\Penn State\221(Java Object Oriented)\Derby Data Base\CourseSchedulerDBPriyanshu5228 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+----------------------------------------------------------------

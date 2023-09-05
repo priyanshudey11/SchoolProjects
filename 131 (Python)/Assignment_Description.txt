@@ -1,0 +1,209 @@
+Assignment : String Processing
+phrase = 'This is the string that I want to reverese with some substitutions'
+
+# Step 1. Replace first th in the phrase with XX
+
+# Step 2. Replace the remaining 'th' occurences with with 'YY'
+
+# Step 3. Reverse the string
+
+# Step 4. Remove the substring 'tnaw' from the string
+
+# Step 5. Add the word 'PYTHON' between 'taYY' and 'gnirts'
+
+# Step 6. Print out the resulting string.
+
+Assignment: Car Cost
+Write a program that helps a person decide whether or not to buy a hybrid car. Your program's inputs (prompt the user) should be
+
+The cost of a new car
+The estimated miles driven per year
+The estimated gas price
+The efficiency in miles per gallon
+The estimated resale value after 5 years
+Compute and display the total cost of owning the car for five years. The total cost involves adding up all the costs and subtracting any revenue.
+
+Assignment: A Simple Lottery
+A simple lottery is being proposed to The Pennsylvania Lottery. The premise is this:
+
+Each play costs $1.
+To play, pick a number between 1 and 1000.
+If your number matches the randomly selected number, you win $400. Otherwise, you win nothing.
+The question The Pennsylvania Lottery has is, "In the long run, how much will Pennsylvania retain for each dollar spent on a ticket?" To answer this question, you will simulate playing the lottery for a year numerous times and compute/report the average amount retained.
+
+Your program should do the following:
+
+Prompt the user for the number of simulations to do. Each simulation represents a year worth of playing. So, the user's value indicates the number of years you are playing the game. Note: Larger numbers are better, but how large is large enough to get a consist answer? Try different large values.
+If the user enters a non-positive number, display a message that the number must be positive and re-prompt. Continue to re-prompt until a positive number is entered.
+
+Simulate the following for the user-entered number of years, assuming you have to play all 365 days a year (ignore leap years).
+Every day, 
+Pick a number that represents the player's guess (the computer should do this randomly).
+Generate the winning number (again, randomly).
+If the numbers match, the player wins $400. Otherwise, they don't receive anything.
+Compute the average daily winnings.
+
+At the end, compute the average winnings based on all the years. This is done by accumulating all the years' average daily winnings and dividing it by the total number of simulations run.
+
+Remember: The goal is know how much The Pennsylvania Lottery will retain per ticket sold! That is what your program should report.
+A run of your program should look as follows:
+
+Running simulation..........
+The expected income per dollar spent on tickets is $XXXX.
+
+
+
+Assignment: Tic-Tac-(Tuc-Tec)-Toe
+The goal of this assignment is to create the game Tic-Tac(-Tuc-Tec)-Toe that two players can play. Before the game begins the players decide what size the board should be: 3x3, 4x4, or 5x5. The game play is typical Tic-Tac-Toe rules: players alternate taking turns choosing a square on the board and the game ends either when one player obtains 3 (or 4 or 5) in a row or the board is filled.
+
+Your program should
+
+Prompt the players for the number of dimensions.
+The input must be an int between 3 and 5 (inclusive). Your program should reprompt until an appropriate value is provided.
+Alternately prompt the players to pick a location on the board by prompting for the row and column.
+The row and column indices should start at 0.
+The program should prompt the player to input a choice until the player selects a valid, open space on the board.
+Display the board in between moves. The board should use capital X ('X') and capital O ('O') for the two players, and a dash ('-') for an open spot. The board should have only as many rows and columns as necessary.
+You must use loops to detect a winning sequence. That is, don't use a massive if/else-if/else statement. The loops should be bounded by the size of the playing board.
+A run of your program would look exactly like the following (though user input will vary and the game number of  turns will depend on the players' moves):
+
+  How big would you like the board to be (3, 4, or 5)? 4 
+
+    0 1 2 3 
+  0 - - - -
+  1 - X - -
+  2 - - - -
+  3 - - - -
+
+  Player X:
+  Row: 1
+  Col: 1
+
+    0 1 2 3 
+  0 - - - -
+  1 - X - -
+  2 - - - -
+  3 - - - -
+
+  Player O:
+  Row: 0
+  Col: 1
+
+    0 1 2 3 
+  0 - O - -
+  1 - X - - 
+  2 - - - -
+  3 - - - -
+
+  Player X:
+  Row: 1
+  Col: 0
+
+    0 1 2 3 
+  0 - O - -
+  1 X X - -
+  2 - - - -
+  3 - - - -
+
+  Player O:
+  Row: 1
+  Col: 2
+
+    0 1 2 3 
+  0 - O - -
+  1 X X O -
+  2 - - - -
+  3 - - - -
+
+and so on, until a player wins or the board is filled.
+
+
+
+Assignment: Baseball Scoring
+
+The primary goal of this assignment is to create a function of the form
+def get_scores(inning_info)
+that decodes the the inning information string and updates the scores for each team as a tuple (away_score, home_score).
+
+You don't need to understand how baseball is played to solve this problem. Everything you need is in this assignment specification. Baseball games are broken into innings. Each inning consists of the "top" and the "bottom", where each team takes a turn at bat (trying to hit the ball thrown by the other team). The playing field consists of four bases arranged in a diamond:
+
+Baseball diamond
+
+where the bases are 1st, 2nd, 3rd, and Home. Players who hit the ball run the bases in order from 1st to Home, trying to reach as many bases before the defensive team stops them. If a player makes it only to first base it is called a "single". If they make it to second base, it's a "double". To third, it's a "triple". To Home, it's a "home run".
+
+An inning information string is a string consisting of the following letters that represent a player taking a turn at bat:
+
+s : single
+d : double
+t : triple
+h : home run
+I : inning change (other team is up to bat)
+So, an example inningInfo string might look like
+
+ssdstIsssItdtssIdhts
+In the top of the first inning, the away team got a single, single, double, single, and a triple. Then the teams traded sides. We assume all runners move the same number of bases forward as the hitter and we just need to track the runners that get home. Each time a player arrives home their team gets a point. So, in that top half, we have
+
+s : batter is on first
+s : runner moves from first to second and batter is on first
+d : runner on second goes home (+1 run), runner of first goes to third, batter is on second
+s : runner on third goes home (+1 run), runner on second goes to third, batter is on first
+t : runner on third makes it home (+1 run), runner on second makes it home (+1 run), batter is on third
+
+So, at the end of that half, the score is Away: 4, Home: 0.
+
+Then home is up
+
+s : batter is on first
+s : runner is on second, batter is on first
+s : runner is on third, runner is on second, batter is on first
+
+That's the end of the first inning and the score is still Away: 4, Home: 0.
+
+And so on.
+
+Notice that the example string represents two complete innings. It's possible the string represents no innings (is empty), a typical game (9 complete innings), a game with extra innings (more than 9 complete innings), or even something with half an inning (for example, "sstd" would be just the top half of the first inning whereas "sstIddsIhht" would be the entire first inning and the top of the second.)
+
+ 
+
+Your script will prompt the user for the inning information, call the function to get the scores, and report the scores to the user. An run of you program should look exactly as follows (though user input and resulting scores will vary):
+
+Enter the inning information: ssdstIsssItdtssIdhts
+
+The end scores is Away: 7, Home: 3.
+
+
+Assignment: One Hour Run
+
+A local running group held a one hour track event where people tried to complete as many miles as they could in one hour. The times were recorded and saved in a file. Each line of the file represents a runner and each line contains 10 entries. The entries are the number of seconds it took to the runner to complete that mile. An entry of zero means the runner didn't finish that mile. There is no upper bound on the number of runners in the file.  An example file might look like
+
+372 368 375 380 381 383 390 382 380 0
+352 355 357 359 358 361 365 362 362 360
+575 572 570 569 572 570 0 0 0 0
+You will then write the table to a file with row and column averages that displays the mile times in "minutes:seconds" format. If the runner didn't complete a mile, the entry should be empty and it should not be included in the column or row average. The above example input would generate the following output
+
+6:12 6:08 6:15 6:20 6:21 6:23 6:30 6:22 6:20      | 6:19
+5:52 5:55 5:57 5:59 5:58 6:01 6:05 6:02 6:02 6:00 | 5:59
+9:35 9:32 9:30 9:29 9:32 9:30                     | 9:31
+---------------------------------------------------
+7:13 7:12 7:14 7:16 7:17 7:18 6:17 6:12 6:11 6:00 
+Your solution must include two functions:
+
+# Reads the data from the specified file and returns a table (2D list) with the entries from the file.
+#
+#     filepath    : a path to the file containing the data
+#     
+def import_data(filepath)
+
+
+# Outputs the table, including row and column averages, to the specified file.
+#
+#     filepath    : a path to the file where the table should be written
+#     runnerData  : the array containing the mile times in seconds
+#
+def export_table(filepath, runnerData);
+
+You will also need to write a one line script that calls import_data() and export_data(). It looks like this:
+
+export_table("output.txt", import_table("input.txt"))
+where you can "input.txt" is referring to your input file (the name of the file where the input data is located) and "output.txt" is referring to your output file (what you want the file to be called that contains the table).
+

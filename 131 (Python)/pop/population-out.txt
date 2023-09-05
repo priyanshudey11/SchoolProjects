@@ -1,0 +1,2 @@
+Min: Wyoming - 493782Max: California - 33871648
+Avg: 5518076.588235294
